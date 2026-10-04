@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Bulk mute words for Bluesky</title>
+  <meta name="description" content="Paste a list of words and add them all to your Bluesky muted words at once.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔇</text></svg>">
+  <link rel="stylesheet" href="/style.css">
+  <script type="module" src="/app.js"></script>
+</head>
+<body>
+  <main>
+    <header>
+      <h1>Mute a whole list of words at once</h1>
+      <p class="lede">Paste words or phrases, check the preview, and add them all to your Bluesky muted words in one step.</p>
+    </header>
+
+    <p id="loading" class="muted">Loading…</p>
+
+    <section id="signed-out" hidden>
+      <form id="sign-in-form">
+        <label for="handle">Your Bluesky handle</label>
+        <div class="row">
+          <input id="handle" name="handle" type="text" inputmode="email" autocomplete="username"
+                 autocapitalize="none" spellcheck="false" placeholder="yourname.bsky.social" required>
+          <button id="sign-in" type="submit">Sign in</button>
+        </div>
+        <p id="sign-in-error" class="error" role="alert"></p>
+      </form>
+      <p class="fine">You'll approve access on your own Bluesky sign-in page. This site never sees your password, and it only asks permission to read and update your preferences. Nothing is stored on a server; your session stays in this browser.</p>
+    </section>
+
+    <section id="signed-in" hidden>
+      <div class="account">
+        <p>Signed in as <strong id="who"></strong></p>
+        <button id="sign-out" type="button" class="link">Sign out</button>
+      </div>
+      <p id="count" class="muted"></p>
+
+      <label for="terms">Words to mute</label>
+      <textarea id="terms" rows="9" spellcheck="false"
+                placeholder="spoilers, finale, leaked&#10;one phrase per line also works"></textarea>
+
+      <fieldset>
+        <legend>Separate words by</legend>
+        <label class="choice"><input type="radio" name="split" value="both" checked> Commas and new lines</label>
+        <label class="choice"><input type="radio" name="split" value="lines"> New lines only <span class="muted">(for phrases that contain commas)</span></label>
+      </fieldset>
+
+      <fieldset>
+        <legend>Mute in</legend>
+        <label class="choice"><input type="radio" name="targets" value="both" checked> Post text and tags</label>
+        <label class="choice"><input type="radio" name="targets" value="tags"> Tags only</label>
+      </fieldset>
+
+      <fieldset>
+        <legend>Apply to</legend>
+        <label class="choice"><input type="radio" name="actor" value="all" checked> Everyone</label>
+        <label class="choice"><input type="radio" name="actor" value="exclude-following"> Everyone except people I follow</label>
+      </fieldset>
+
+      <div class="field">
+        <label for="duration">Duration</label>
+        <select id="duration">
+          <option value="never">Forever</option>
+          <option value="24h">24 hours</option>
+          <option value="7d">7 days</option>
+          <option value="30d">30 days</option>
+        </select>
+      </div>
+
+      <div id="preview" hidden>
+        <h2 id="new-head"></h2>
+        <ul id="new-list" class="chips"></ul>
+        <div id="dupe-wrap" hidden>
+          <h2 id="dupe-head"></h2>
+          <ul id="dupe-list" class="chips dupes"></ul>
+        </div>
+      </div>
+
+      <button id="submit" type="button" disabled>Mute words</button>
+      <p id="status" role="status" aria-live="polite"></p>
+      <p class="fine">You can review or remove muted words anytime in the Bluesky app under Settings, Moderation, Mute words and tags.</p>
+    </section>
+  </main>
+</body>
+</html>

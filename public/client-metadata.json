@@ -1,0 +1,12 @@
+{
+  "client_id": "https://mutes.joshuajfriedman.com/client-metadata.json",
+  "client_name": "Bulk mute words",
+  "client_uri": "https://mutes.joshuajfriedman.com",
+  "redirect_uris": ["https://mutes.joshuajfriedman.com/"],
+  "scope": "atproto rpc:app.bsky.actor.getPreferences?aud=* rpc:app.bsky.actor.putPreferences?aud=*",
+  "grant_types": ["authorization_code", "refresh_token"],
+  "response_types": ["code"],
+  "token_endpoint_auth_method": "none",
+  "application_type": "web",
+  "dpop_bound_access_tokens": true
+}

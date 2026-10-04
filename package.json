@@ -1,0 +1,22 @@
+{
+  "name": "bluesky-bulk-mutes",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "esbuild src/main.js --bundle --format=esm --minify --target=es2022 --outfile=public/app.js",
+    "dev": "npm run build && npx serve public -l 8080"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@atproto/api": "^0.21.0",
+    "@atproto/common-web": "^0.5.12",
+    "@atproto/oauth-client-browser": "^0.5.7"
+  },
+  "private": true,
+  "devDependencies": {
+    "esbuild": "^0.28.2"
+  }
+}
